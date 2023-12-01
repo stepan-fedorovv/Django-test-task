@@ -1,10 +1,12 @@
 from django.contrib import admin
-from .models import Curator, Direction, Discipline, Group, Student
+from django.contrib.auth.admin import UserAdmin
+
+from .models import Direction, Discipline, Group, Student, CustomUser
 
 
-@admin.register(Curator)
-class CuratorAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'surname', 'bio',)
+@admin.register(CustomUser)
+class CustomUserAdmin(UserAdmin):
+    list_display = ('id', 'username', 'first_name', 'last_name', 'email', 'is_curator', 'is_staff', )
 
 
 @admin.register(Direction)
@@ -24,4 +26,4 @@ class GroupAdmin(admin.ModelAdmin):
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
-    list_display = ('id', 'name', 'surname', 'picture', 'group',)
+    list_display = ('id', 'name', 'surname', 'group', 'sex')
